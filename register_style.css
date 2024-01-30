@@ -1,0 +1,58 @@
+.register-user{
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.register-application, #update-application{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+input{
+    display: block;
+    margin: 20px auto;
+}
+
+.register-application button{
+    background-color: #9f0311;
+    color: #e9eaea;
+    margin-top: 30px;
+    letter-spacing: 1px;
+    padding: 15px 70px;
+    border: 0px;
+    transition: all 0.5s ease-in-out;
+}
+
+#update-application button{
+    background-color: #9f0311;
+    color: #e9eaea;
+    margin-top: 30px;
+    letter-spacing: 1px;
+    padding: 15px 70px;
+    border: 0px;
+    transition: all 0.5s ease-in-out;
+}
+
+.register-application button:hover{
+    background-color: #ffffff;
+    color: #9f0311;
+    cursor: pointer;
+}
+
+#update-application button:hover{
+    background-color: #ffffff;
+    color: #9f0311;
+    cursor: pointer;
+}
+
+.show-users{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
