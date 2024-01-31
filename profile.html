@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="register_style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Register</title>
+</head>
+
+<body onload="fetchUsers()">
+    <section>
+        <div class="search">
+            <input type="text" id="userSearchArea" name="userId" placeholder="Search your User ID"><span
+                class="material-symbols-outlined"
+                onclick="fetchUserData(document.getElementById('userSearchArea').value)" id="search-icon">
+                search
+            </span>
+        </div>
+
+        <div class="profile-section">
+            <div id="profile-area">
+                <div class="profile-head-data">
+                    <div class="profile-img-wrapper">
+                        <img id="profile-img" src="images/man.jfif">
+                    </div>
+
+                    <div class="profile-head-info">
+                        <h3 id="head-1" class="regular-gotham">Saran Kaanth</h3>
+                        <p id="head-2" class="regular-barcelony">@ sarnknth</p>
+                        <h5 id="head-3" class="regular-gotham">San Andreas, NY</h5>
+                    </div>
+                </div>
+
+                <div class="user-contact-info">
+                    <div id="contact-element">
+                        <h4 class="regular-barcelony">Phone</h4>
+                        <h5 id="contact-1" class="regular-gotham">010-692-6593 x09125</h5>
+                    </div>
+
+                    <div id="contact-element">
+                        <h4 class="regular-barcelony">Email</h4>
+                        <h5 id="contact-2"  class="regular-gotham">sarnknth@gmail.com</h5>
+                    </div>
+
+                    <div id="contact-element">
+                        <h4 class="regular-barcelony">Company</h4>
+                        <h5 id="contact-3"  class="regular-gotham">Deloitte</h5>
+                    </div>
+
+                    <div id="contact-element">
+                        <h4 class="regular-barcelony">Website</h4>
+                        <h5 id="contact-4"  class="regular-gotham">sarnknth@gmail.com</h5>
+                    </div>
+                </div>
+
+                <div class="post-info">
+                    <div class="post-head">
+                        <h1 class="regular-barcelony" id="sub-heading">Posts</h1>
+                        <button type="button" id="add-post-button">
+                            Add Post
+                            <span class="material-symbols-outlined" id="add-post-icon">
+                                add
+                            </span>
+                        </button>
+                    </div>
+
+                    <div id="post-info-grid">
+                        <div class="post-card">
+                            <div id="post-body">
+                                <h5 class="regular-gotham">
+                                    sint suscipit
+                                </h5>
+                            </div>
+
+                            <div id="post-option-buttons">
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Edit
+                                </span></button>
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Delete
+                                </span></button>
+                            </div>
+                        </div>
+
+                        <div class="post-card">
+                            <div id="post-body">
+                                <h5 class="regular-gotham">
+                                    sint suscipit
+                                </h5>
+                            </div>
+                            
+                            <div id="post-option-buttons">
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Edit
+                                </span></button>
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Delete
+                                </span></button>
+                            </div>
+                        </div>
+
+                        <div class="post-card">
+                            <div id="post-body">
+                                <h5 class="regular-gotham">
+                                    sint suscipit
+                                </h5>
+                            </div>
+                            
+                            <div id="post-option-buttons">
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Edit
+                                </span></button>
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Delete
+                                </span></button>
+                            </div>
+                        </div>
+
+                        <div class="post-card">
+                            <div id="post-body">
+                                <h5 class="regular-gotham">
+                                    sint suscipit
+                                </h5>
+                            </div>
+                            
+                            <div id="post-option-buttons">
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Edit
+                                </span></button>
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Delete
+                                </span></button>
+                            </div>
+                        </div>
+
+                        <div class="post-card">
+                            <div id="post-body">
+                                <h5 class="regular-gotham">
+                                    sint suscipit
+                                </h5>
+                            </div>
+                            
+                            <div id="post-option-buttons">
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Edit
+                                </span></button>
+                                <button type="button"><span class="material-symbols-outlined">
+                                    Delete
+                                </span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div id="post-area">
+                <h3>sdkf</h3>
+            </div> -->
+        </div>
+
+    </section>
+    <script src="script.js"></script>
+    <script src="api.js"></script>
+</body>
+
+</html>
