@@ -1,26 +1,120 @@
+let gUserId = 0;
+
 async function fetchUserData(userId) {
     try {
         const response = await fetch('https://jsonplaceholder.typicode.com/users/' + userId);
-        const json = await response.json();
-        if (Object.keys(json).length == 0) {
-            console.log("No Data Available");
+        if (response.status != 200) {
+            alert("User not found!");
         } else {
-            console.log(json);
-            const userPosts = await fetchUserPosts(userId);
-            const userTodos = await fetchUserTodos(userId);
-            console.log(userPosts);
-            console.log(userTodos);
+            const json = await response.json();
+            gUserId = userId;
+            loadProfileData(json);
+            await fetchUserPosts(userId);
         }
     } catch (error) {
         console.log(error);
     }
 }
 
+function loadProfileData(profileData) {
+    loadProfileHead(profileData.name, profileData.username, profileData.address);
+    loadContactInfo(profileData.phone, profileData.email, profileData.company, profileData.website);
+}
+
+function loadProfileHead(name, username, address) {
+    const imgTag = document.getElementById("profile-img");
+    const head1 = document.getElementById("head-1");
+    const head2 = document.getElementById("head-2");
+    const head3 = document.getElementById("head-3");
+
+    imgTag.src = (gUserId % 2 == 0) ? "images/man.jfif" : "images/woman.jfif";
+
+    head1.innerHTML = name;
+    head2.innerHTML = "@ " + username;
+    head3.innerHTML = address.street + "," + address.city;
+}
+
+function loadContactInfo(phone, email, company, website) {
+    const contact1 = document.getElementById("contact-1");
+    const contact2 = document.getElementById("contact-2");
+    const contact3 = document.getElementById("contact-3");
+    const contact4 = document.getElementById("contact-4");
+
+    contact1.innerHTML = phone;
+    contact2.innerHTML = email;
+    contact3.innerHTML = company.name;
+    contact4.innerHTML = website;
+}
+
 async function fetchUserPosts(userId) {
     try {
         const response = await fetch('https://jsonplaceholder.typicode.com/users/' + userId + "/posts");
-        const json = await response.json();
-        return json;
+
+        if (response.status != 200) {
+            alert("Posts Not Found");
+        } else {
+            const json = await response.json();
+            loadUserPosts(json);
+        }
+    } catch (error) {
+        console.log(error);
+        alert("Please try again!");
+    }
+}
+
+function loadUserPosts(postData) {
+    try {
+        const postArea = document.getElementById("post-info-grid");
+
+        postArea.innerHTML="";
+
+        postData.forEach((element, index) => {
+            console.log(element);
+
+            const card = document.createElement("div");
+            card.className = "post-card";
+
+            const cardBody = document.createElement("div");
+            cardBody.id = "post-body";
+
+            const bodyHead = document.createElement("h5");
+            bodyHead.className = "regular-gotham";
+            bodyHead.innerHTML = element.title.split(' ').slice(0, 2).join(' ');
+
+            cardBody.appendChild(bodyHead);
+
+            const cardButtons = document.createElement("div");
+            cardButtons.id = "post-option-buttons";
+
+            const button1 = document.createElement("button");
+            button1.type = "button";
+
+            const editSpan = document.createElement("span");
+            editSpan.className = "material-symbols-outlined";
+            editSpan.innerHTML = "edit";
+            editSpan.addEventListener('click', () => { console.log("edited") });
+
+            button1.appendChild(editSpan)
+
+            const button2 = document.createElement("button");
+            button2.type = "button";
+
+            const deleteSpan = document.createElement("span");
+            deleteSpan.className = "material-symbols-outlined";
+            deleteSpan.innerHTML = "delete";
+            deleteSpan.addEventListener('click', () => { console.log("deleted") });
+
+            button2.appendChild(deleteSpan)
+
+            cardButtons.appendChild(button1);
+            cardButtons.appendChild(button2);
+
+            card.appendChild(cardBody);
+            card.appendChild(cardButtons);
+
+            postArea.appendChild(card);
+
+        });
     } catch (error) {
         console.log(error);
     }
@@ -50,9 +144,9 @@ async function addPost(newPostData) {
     }
 }
 
-async function updatePost(updatedData){
+async function updatePost(updatedData) {
     try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts/'+updatedData.id, {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts/' + updatedData.id, {
             method: 'PUT',
             body: JSON.stringify(updatedData),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' }
@@ -64,9 +158,9 @@ async function updatePost(updatedData){
     }
 }
 
-async function deletePost(postId){
+async function deletePost(postId) {
     try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts/'+postId, {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts/' + postId, {
             method: 'DELETE',
         },);
         const json = await response.json();
@@ -75,7 +169,3 @@ async function deletePost(postId){
         console.log(error);
     }
 }
-
-// fetchUserData(2)
-// addPost({ title: "Love", body: "Good", userId: 2 });
-deletePost(2);
