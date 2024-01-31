@@ -1,4 +1,5 @@
 let gUserId = 0;
+let updateId=0;
 
 async function fetchUserData(userId) {
     try {
@@ -66,10 +67,9 @@ function loadUserPosts(postData) {
     try {
         const postArea = document.getElementById("post-info-grid");
 
-        postArea.innerHTML="";
+        postArea.innerHTML = "";
 
         postData.forEach((element, index) => {
-            console.log(element);
 
             const card = document.createElement("div");
             card.className = "post-card";
@@ -92,7 +92,7 @@ function loadUserPosts(postData) {
             const editSpan = document.createElement("span");
             editSpan.className = "material-symbols-outlined";
             editSpan.innerHTML = "edit";
-            editSpan.addEventListener('click', () => { console.log("edited") });
+            editSpan.addEventListener('click', () => { showEditPostArea(element) });
 
             button1.appendChild(editSpan)
 
@@ -102,7 +102,7 @@ function loadUserPosts(postData) {
             const deleteSpan = document.createElement("span");
             deleteSpan.className = "material-symbols-outlined";
             deleteSpan.innerHTML = "delete";
-            deleteSpan.addEventListener('click', () => { console.log("deleted") });
+            deleteSpan.addEventListener('click', () => { deletePost(element.id) });
 
             button2.appendChild(deleteSpan)
 
@@ -130,31 +130,79 @@ async function fetchUserTodos(userId) {
     }
 }
 
-async function addPost(newPostData) {
+function showAddPostArea() {
+    const postArea = document.getElementById("post-area");
+    postArea.style.display = "flex";
+
+    const profileSection = document.querySelector(".register-application");
+    profileSection.style.display = "flex";
+}
+
+function removeAddPostArea() {
+    const postArea = document.getElementById("post-area");
+    postArea.style.display = "none"
+
+    const profileSection = document.querySelector(".register-application");
+    profileSection.style.display = "none";
+}
+
+function showEditPostArea(oldPostData) {
+    const postArea = document.getElementById("post-area");
+    postArea.style.display = "flex";
+
+    const profileSection = document.querySelector("#update-application");
+    profileSection.style.display = "flex";
+    document.getElementById("titleInputUpdate").value = oldPostData.title;
+    document.getElementById("bodyInputUpdate").value = oldPostData.body;
+    updateId=oldPostData.id;
+}
+
+function removeEditPostArea() {
+    const postArea = document.getElementById("post-area");
+    postArea.style.display = "none"
+
+    const profileSection = document.querySelector("#update-application");
+    profileSection.style.display = "none";
+}
+
+async function addPost() {
     try {
+        const newPostData = {
+            title: document.querySelector("#titleInputAdd").value,
+            body: document.querySelector("#bodyInputAdd").value,
+            userId: gUserId,
+        }
         const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
             body: JSON.stringify(newPostData),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' }
         },);
         const json = await response.json();
-        console.log(json);
+        alert("Post added successfully!");
+        document.querySelector("#reg-form").reset();
     } catch (error) {
-        console.log(error);
+        alert("Not able to add post");
     }
 }
 
-async function updatePost(updatedData) {
+async function updatePost() {
     try {
+        const updatedData = {
+            id:updateId,
+            title: document.querySelector("#titleInputUpdate").value,
+            body: document.querySelector("#bodyInputUpdate").value,
+            userId: gUserId,
+        }
         const response = await fetch('https://jsonplaceholder.typicode.com/posts/' + updatedData.id, {
             method: 'PUT',
             body: JSON.stringify(updatedData),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' }
         },);
         const json = await response.json();
-        console.log(json);
+        alert("Post Updated Successfully!");
     } catch (error) {
         console.log(error);
+        alert("Not able to update post! Please try again!");
     }
 }
 
@@ -164,8 +212,11 @@ async function deletePost(postId) {
             method: 'DELETE',
         },);
         const json = await response.json();
-        console.log(json);
+        alert("Successfully Deleted");
+        fetchUserData(gUserId);
     } catch (error) {
-        console.log(error);
+        alert("Please try again!");
     }
 }
+
+fetchUserData(3);

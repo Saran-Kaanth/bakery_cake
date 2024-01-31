@@ -60,7 +60,7 @@
                 <div class="post-info">
                     <div class="post-head">
                         <h1 class="regular-barcelony" id="sub-heading">Posts</h1>
-                        <button type="button" id="add-post-button">
+                        <button type="button" id="add-post-button" onclick="showAddPostArea()">
                             Add Post
                             <span class="material-symbols-outlined" id="add-post-icon">
                                 add
@@ -69,97 +69,37 @@
                     </div>
 
                     <div id="post-info-grid">
-                        <div class="post-card">
-                            <div id="post-body">
-                                <h5 class="regular-gotham">
-                                    sint suscipit
-                                </h5>
-                            </div>
-
-                            <div id="post-option-buttons">
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Edit
-                                </span></button>
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Delete
-                                </span></button>
-                            </div>
-                        </div>
-
-                        <div class="post-card">
-                            <div id="post-body">
-                                <h5 class="regular-gotham">
-                                    sint suscipit
-                                </h5>
-                            </div>
-                            
-                            <div id="post-option-buttons">
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Edit
-                                </span></button>
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Delete
-                                </span></button>
-                            </div>
-                        </div>
-
-                        <div class="post-card">
-                            <div id="post-body">
-                                <h5 class="regular-gotham">
-                                    sint suscipit
-                                </h5>
-                            </div>
-                            
-                            <div id="post-option-buttons">
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Edit
-                                </span></button>
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Delete
-                                </span></button>
-                            </div>
-                        </div>
-
-                        <div class="post-card">
-                            <div id="post-body">
-                                <h5 class="regular-gotham">
-                                    sint suscipit
-                                </h5>
-                            </div>
-                            
-                            <div id="post-option-buttons">
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Edit
-                                </span></button>
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Delete
-                                </span></button>
-                            </div>
-                        </div>
-
-                        <div class="post-card">
-                            <div id="post-body">
-                                <h5 class="regular-gotham">
-                                    sint suscipit
-                                </h5>
-                            </div>
-                            
-                            <div id="post-option-buttons">
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Edit
-                                </span></button>
-                                <button type="button"><span class="material-symbols-outlined">
-                                    Delete
-                                </span></button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- <div id="post-area">
-                <h3>sdkf</h3>
-            </div> -->
+            <div id="post-area" style="display:none">
+                <div class="register-application" style="display:none">
+                    <h3 class="regular-barcelony" id="sub-heading">Add Post</h3>
+                    <form id="reg-form">
+                        <div class="register-form-field">
+                            <input type="text" id="titleInputAdd" name="title" placeholder="Title">
+                            <input type="text" id="bodyInputAdd" name="body" placeholder="Body">
+                        </div>
+                    </form>
+                    <button type="submit" class="regular-gotham" onclick="addPost()">Add</button>
+                    <button type="submit" class="regular-gotham" onclick="removeAddPostArea()">Cancel</button>
+                </div>
+
+                <div id="update-application" style="display:none">
+                    <h3 class="regular-barcelony" id="sub-heading">Edit Post</h3>
+                    <form id="update-form">
+                        <div class="register-form-field">
+                            <input type="text" id="titleInputUpdate" name="title" placeholder="New Title">
+                            <input type="text" id="bodyInputUpdate" name="body" placeholder="New Body">
+                        </div>
+                    </form>
+                    <button type="submit" class="regular-gotham" onclick="updatePost()">Update</button>
+                    <button type="submit" class="regular-gotham" onclick="removeEditPostArea()">Cancel</button>
+                </div>
+        
+
+            </div>
         </div>
 
     </section>
