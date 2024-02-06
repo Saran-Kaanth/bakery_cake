@@ -45,6 +45,7 @@ async function fetchData() {
       }
         
 fetchData();
+console.log("Sample Data")
 
 
 
